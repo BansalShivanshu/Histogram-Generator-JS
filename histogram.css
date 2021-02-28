@@ -1,0 +1,54 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    padding: 20px;
+    margin: 50px;
+    background-color: #eaeff1;
+    width: fit-content;
+    height: fit-content;
+}
+
+table {
+    padding: 25px;
+    border-spacing: 20px;
+}
+
+td {
+    padding-right: 40px;
+}
+
+input[type="number"], textarea {
+    width: 60px;
+    padding-right: 10px;
+    padding-left: 13.5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ht-values {
+    display: block;
+    width: 200px;
+    height: 30px;
+}
+
+.st-values {
+    display: block;
+    width: 100px;
+    text-align: right;
+}
+
+section h2 {
+    color: #b3302a;
+}
+
+td:nth-child(3n+1) {  
+    font-weight: bold;
+}
+
+.percent {
+    padding-right: 0 ! important;
+    text-align: center;
+}

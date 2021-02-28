@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="histogram.css">
+    <script src="calculate.js" defer></script>
+    <title>Histogram Generator</title>
+</head>
+<body onload="init()">
+
+    <h1 id="main-heading">
+        Histogram Generator
+    </h1>
+
+    <input type="file" id="fileInput" name="file">
+
+    <main>
+        <section class="lb">
+            <h2>
+                Lower Bounds
+            </h2>
+    
+            <table id="lb-table">
+                <tr>
+                    <td>
+                        Max
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-max" min="0" value="100.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A+
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-Aplus" min="0" value="95.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-a" min="0" value="90.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A-
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-Aminus" min="0" value="85.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        B+
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-Bplus" min="0" value="80.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        B
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-b" min="0" value="75.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        B-
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-Bminus" min="0" value="70.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        C+
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-Cplus" min="0" value="65.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        C
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-c" min="0" value="60.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        C-
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-Cminus" min="0" value="55.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        D
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-d" min="0" value="50.00" step="0.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        F
+                    </td>
+                    <td class="lb-input">
+                        <input type="number" id="input-f" min="0" value="0.00" step="0.01">
+                    </td>
+                </tr>
+            </table>
+        </section>
+    
+        <section class="histogram">
+            <h2>
+                Histogram
+            </h2>
+    
+            <table id="hist-table">
+                <tr>
+                    <td>
+                        A+
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-Aplus" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p1"></td>
+                </tr>
+                <tr>
+                    <td>
+                        A
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-a" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        A-
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-Aminus" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p3"></td>
+                </tr>
+                <tr>
+                    <td>
+                        B+
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-Bplus" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p4"></td>
+                </tr>
+                <tr>
+                    <td>
+                        B
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-b" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p5"></td>
+                </tr>
+                <tr>
+                    <td>
+                        B-
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-Bminus" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p6"></td>
+                </tr>
+                <tr>
+                    <td>
+                        C+
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-Cplus" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p7"></td>
+                </tr>
+                <tr>
+                    <td>
+                        C
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-c" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p8"></td>
+                </tr>
+                <tr>
+                    <td>
+                        C-
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-Cminus" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p9"></td>
+                </tr>
+                <tr>
+                    <td>
+                        D
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-d" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p10"></td>
+                </tr>
+                <tr>
+                    <td>
+                        F
+                    </td>
+                    <td>
+                        <progress max="100" value="0" id="ht-f" class="ht-values"></progress>
+                    </td>
+                    <td class="percent" id="p11"></td>
+                </tr>
+            </table>
+        </section>
+    
+        <section class="stats">
+            <h2>
+                Stats
+            </h2>
+    
+            <table id="st-table">
+                <tr>
+                    <td>
+                        Highest
+                    </td>
+                    <td>
+                        <!-- hishest ranking student -->
+                        <label class="st-values" id="highest"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Lowest
+                    </td>
+                    <td>
+                        <!-- lowest ranking student -->
+                        <label class="st-values" id="lowest"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Mean
+                    </td>
+                    <td>
+                        <!-- mean of all -->
+                        <label class="st-values" id="mean"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Median
+                    </td>
+                    <td>
+                        <!-- median of all -->
+                        <label class="st-values" id="median"></label>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    
+</body>
+</html>
